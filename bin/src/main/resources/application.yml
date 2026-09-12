@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: uday-builders-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:sqlserver://localhost:1433;databaseName=udaybuilders;encrypt=false;trustServerCertificate=true}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: ${MAX_IMAGE_SIZE:10MB}
+      max-request-size: ${MAX_REQUEST_SIZE:50MB}
+app:
+  jwt:
+    secret: ${JWT_SECRET:change-this-development-secret-to-a-long-random-value}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  azure:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING:}
+    container: ${AZURE_STORAGE_CONTAINER:uday-builders-images}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    display-request-duration: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+server:
+  error:
+    include-message: never
